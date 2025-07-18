@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ToDo List</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 40px; background: #f4f4f4;">
+    <h1 style="text-align: center; color: #333;">ToDo List</h1>
+    <table border="1" style="border-collapse: collapse; width: 80%; margin: 20px auto; background: #fff; box-shadow: 0 0 5px #ccc;">
+        <tr style="background: #333; color: #fff;">
+            <th style="padding: 12px 15px;">ID</th>
+            <th style="padding: 12px 15px;">Title</th>
+            <th style="padding: 12px 15px;">Description</th>
+            <th style="padding: 12px 15px;">Actions</th>
+        </tr>
+        {% for task in tasks %}
+        <tr style="background: {% if loop.index0 % 2 == 0 %}#f9f9f9{% else %}#fff{% endif %};">
+            <td style="padding: 12px 15px; text-align: center;">{{ task._id }}</td>
+            <td style="padding: 12px 15px; text-align: center;">{{ task.title }}</td>
+            <td style="padding: 12px 15px; text-align: center;">{{ task.description }}</td>
+            <td style="padding: 12px 15px; text-align: center;">
+                <a href="/update/{{task._id}}">
+                    <button style="padding: 6px 12px; background: #333; color: #fff; border: none; cursor: pointer;">Edit</button>
+                </a>
+                <a href="/delete/{{task._id}}">
+                    <button style="padding: 6px 12px; background: #d9534f; color: #fff; border: none; cursor: pointer;">Delete</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/create">
+        <button style="display: block; width: 200px; margin: 30px auto; padding: 10px 20px; background: #28a745; color: #fff; border: none; cursor: pointer;">Create New ToDo</button>
+    </a>
+</body>
+</html>
